@@ -8,7 +8,7 @@
 		"deploy": "bun run build && wrangler pages deploy",
 		"dev": "remix vite:dev",
 		"lint": "bunx @biomejs/biome check .",
-		"format": "bunx @biomejs/biome format . && bunx @biomejs/biome lint --apply .",
+		"format": "bunx @biomejs/biome format --write . && bunx @biomejs/biome lint --apply .",
 		"start": "wrangler pages dev ./build/client",
 		"typecheck": "tsc",
 		"typegen": "wrangler types",
