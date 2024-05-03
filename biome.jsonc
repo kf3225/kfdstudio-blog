@@ -1,7 +1,7 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
 	"organizeImports": {
-		"enabled": true
+		"enabled": false
 	},
 	"files": {
 		// All tools, including the linter, ignore following files
