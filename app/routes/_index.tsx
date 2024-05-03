@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
+import { Button } from "~/components/ui/button";
 
 export const meta: MetaFunction = () => {
 	return [
@@ -11,5 +12,14 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-	return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+	return (
+		<div>
+			<div>
+				<h1 className="text-3xl font-bold underline">Hello world!</h1>
+			</div>
+			<div>
+				<Button>Click Me</Button>
+			</div>
+		</div>
+	);
 }
