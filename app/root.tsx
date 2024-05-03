@@ -19,9 +19,10 @@ import {
 	ScrollRestoration,
 	useLoaderData,
 } from "@remix-run/react";
-import { ModeToggle } from "./components/mode-toggle";
 
 import styles from "~/tailwind.css?url";
+import { Footer } from "./components/footer";
+import { Header } from "./components/header";
 
 export const links: LinksFunction = () => [
 	{ rel: "stylesheet", href: styles },
@@ -59,9 +60,12 @@ export function App() {
 				<PreventFlashOnWrongTheme ssrTheme={Boolean(data.theme)} />
 				<Links />
 			</head>
-			<body>
-				<ModeToggle />
-				<Outlet />
+			<body className="min-h-dvh flex flex-col">
+				<Header />
+				<div className="container flex-1">
+					<Outlet />
+				</div>
+				<Footer />
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
