@@ -1,0 +1,17 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"files": {
+		// All tools, including the linter, ignore following files
+		"ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"]
+	},
+	"linter": {
+		"enabled": true,
+		"ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"],
+		"rules": {
+			"recommended": true
+		}
+	}
+}
