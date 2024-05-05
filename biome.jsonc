@@ -1,17 +1,24 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
-	"organizeImports": {
-		"enabled": false
-	},
-	"files": {
-		// All tools, including the linter, ignore following files
-		"ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"]
-	},
-	"linter": {
-		"enabled": true,
-		"ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"],
-		"rules": {
-			"recommended": true
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
+  "organizeImports": {
+    "enabled": false
+  },
+  "files": {
+    // All tools, including the linter, ignore following files
+    "ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"]
+  },
+  "formatter": {
+    "enabled": true,
+    "ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"],
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf"
+  },
+  "linter": {
+    "enabled": true,
+    "ignore": [".wrangler/**", "build/**", "node_modules/**", "public/**"],
+    "rules": {
+      "recommended": true
+    }
+  }
 }
