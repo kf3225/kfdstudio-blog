@@ -1,6 +1,8 @@
-import { Link } from "@remix-run/react";
+import { Link, useParams } from "@remix-run/react";
 import { PostPagination } from "~/components/post-pagination";
 import { Button } from "~/components/ui/button";
+import { calculatePage } from "~/utils/pages";
+import { posts } from "~/utils/posts";
 import {
   Card,
   CardContent,
@@ -8,21 +10,23 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card";
-import { calculatePage } from "~/utils/pages";
-import { posts } from "~/utils/posts";
+} from "../components/ui/card";
 
-export default function Index() {
+export default function Page() {
+  const param = useParams();
+  const current = param.id || "1";
   const postEntries = Object.entries(posts);
   const allPages = Math.ceil(postEntries.length / 8);
-  const page = calculatePage("1", allPages);
+  const page = calculatePage(current, allPages);
+  const beginingNumToShowPost = (Number(current) - 1) * 8;
+  const endingNumToShowPost = beginingNumToShowPost + 8;
+
   return (
     <main>
       <div className="flex justify-center py-8">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {postEntries
-            // 最新の8記事まで表示
-            .slice(0, 8)
+            .slice(beginingNumToShowPost, endingNumToShowPost)
             .map(([path, meta]) => {
               return (
                 <li key={path}>
