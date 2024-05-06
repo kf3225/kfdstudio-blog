@@ -37,7 +37,7 @@ export default function Page() {
                         <h3>{meta.frontmatter.title}</h3>
                         <Link
                           className="absolute inset-0"
-                          to={`posts/${path.replace(".mdx", "")}`}
+                          to={`/posts/${path.replace(".mdx", "")}`}
                         />
                       </CardTitle>
                     </CardHeader>
