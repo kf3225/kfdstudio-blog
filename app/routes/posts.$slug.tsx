@@ -1,11 +1,9 @@
 import { useParams } from "@remix-run/react";
-import { posts } from "../utils/posts";
+import { posts } from "~/utils/posts";
 
 export default function Post() {
-  const params = useParams();
-  const [post, ..._] = Object.entries(posts)
-    .filter(([filename, _]) => `${params.slug}.mdx` === filename)
-    .map(([_, meta]) => meta);
+  const params = useParams<{ slug: string }>();
+  const post = posts[`${params.slug}.mdx`];
   const Component = post.default;
   return <Component />;
 }

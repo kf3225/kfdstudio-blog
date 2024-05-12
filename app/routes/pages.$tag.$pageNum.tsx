@@ -1,7 +1,9 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useParams } from "@remix-run/react";
 import { PostPagination } from "~/components/post-pagination";
 import { Tags } from "~/components/tags";
+import { calculatePage } from "~/utils/pages";
+import { getPosts } from "~/utils/posts";
 import {
   Card,
   CardContent,
@@ -9,26 +11,28 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card";
-import { calculatePage } from "~/utils/pages";
-import { getPosts } from "~/utils/posts";
+} from "../components/ui/card";
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const posts = await getPosts(context);
   return json(posts);
 };
 
-export default function Index() {
+export default function Page() {
   const posts = Object.entries(useLoaderData<typeof loader>());
+  const param = useParams();
+  const current = param.pageNum || "1";
   const allPages = Math.ceil(posts.length / 8);
-  const page = calculatePage("1", allPages);
+  const page = calculatePage(current, allPages);
+  const beginingNumToShowPost = (Number(current) - 1) * 8;
+  const endingNumToShowPost = beginingNumToShowPost + 8;
+
   return (
     <main>
       <div className="flex justify-center">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {posts
-            // 最新の8記事まで表示
-            .slice(0, 8)
+            .slice(beginingNumToShowPost, endingNumToShowPost)
             .map(([path, meta]) => {
               return (
                 <li key={path}>
@@ -39,7 +43,7 @@ export default function Index() {
                         <h3>{meta.frontmatter.title}</h3>
                         <Link
                           className="absolute inset-0"
-                          to={`posts/${path.replace(".mdx", "")}`}
+                          to={`/posts/${path.replace(".mdx", "")}`}
                         />
                       </CardTitle>
                     </CardHeader>
@@ -66,6 +70,7 @@ export default function Index() {
         next={page.next}
         first={page.first}
         last={page.last}
+        tag={param.tag}
       />
     </main>
   );

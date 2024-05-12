@@ -16,13 +16,17 @@ export function PostPagination(props: {
   next: string | null;
   first: string | null;
   last: string | null;
+  tag?: string;
 }) {
+  const searchTag = props.tag || "all";
   return (
     <Pagination className="pt-8">
       <PaginationContent>
         <PaginationItem>
           {props.prev ? (
-            <PaginationPrevious to={`/pages/${props.prev || "#"}`} />
+            <PaginationPrevious
+              to={`/pages/${searchTag}/${props.prev || "#"}`}
+            />
           ) : (
             <Button disabled variant={"ghost"}>
               <ChevronLeft className="h-4 w-4" />
@@ -30,17 +34,17 @@ export function PostPagination(props: {
           )}
         </PaginationItem>
         <PaginationItem className={props.prev !== null ? "block" : "hidden"}>
-          <PaginationLink to={`/pages/${props.prev}`}>
+          <PaginationLink to={`/pages/${searchTag}/${props.prev}`}>
             {props.prev}
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink isActive to={`/pages/${props.current}`}>
+          <PaginationLink isActive to={`/pages/${searchTag}/${props.current}`}>
             {props.current}
           </PaginationLink>
         </PaginationItem>
         <PaginationItem className={props.next !== null ? "block" : "hidden"}>
-          <PaginationLink to={`/pages/${props.next}`}>
+          <PaginationLink to={`/pages/${searchTag}/${props.next}`}>
             {props.next}
           </PaginationLink>
         </PaginationItem>
@@ -49,7 +53,7 @@ export function PostPagination(props: {
         </PaginationItem>
         <PaginationItem>
           {props.next ? (
-            <PaginationNext to={`/pages/${props.next || "#"}`} />
+            <PaginationNext to={`/pages/${searchTag}/${props.next || "#"}`} />
           ) : (
             <Button disabled variant={"ghost"}>
               <ChevronRight className="h-4 w-4" />
