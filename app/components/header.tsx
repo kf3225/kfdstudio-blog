@@ -1,12 +1,14 @@
 import { Link } from "@remix-run/react";
 
 import { BsGithub, BsTwitterX } from "react-icons/bs";
+import { FaHashtag } from "react-icons/fa";
 import { GrDocumentUser } from "react-icons/gr";
 import { cn } from "~/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
 
 const MENUS = [
+  { name: "Tags", icon: FaHashtag, url: "/tags" },
   { name: "About me", icon: GrDocumentUser, url: "/about" },
   {
     name: "X/Twitter",
@@ -22,7 +24,7 @@ const MENUS = [
 
 export function Header() {
   return (
-    <header className="container h-14 flex items-center justify-between border-b-2">
+    <header className="container h-14 flex items-center justify-between border-b-2 mb-8">
       <Link to={"/"} className="font-bold text-xl">
         ~/.memo
       </Link>
