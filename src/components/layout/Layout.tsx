@@ -7,7 +7,7 @@ import xSvgUrl from "/src/assets/x.svg";
 
 const Header: Component = () => {
   const navItemStyle =
-    "px-4 py-2 hover:text-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 rounded";
+    "px-4 py-2 hover:text-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-full";
   return (
     <header class="mx-auto flex justify-center w-full max-w-[50rem] py-4">
       <nav class="flex justify-between w-full items-center px-4">
