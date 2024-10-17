@@ -32,7 +32,7 @@ export const posts: Post[] = [
   },
   {
     id: 202408241912,
-    url: "https://note.com/fkeisuke/n/n855a2e35d433",
+    url: "https://note.com/fkeisuke/n/na8953c7838f9",
     title: "Step Functionsの入力値チェックについて",
     tags: ["AWS", "Step Functions"],
   },
