@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 文字 */
+:root {
+  --color-primary-text: #333333;
+}
+@layer base {
+  body {
+    @apply text-[var(--color-primary-text)];
+  }
+}
