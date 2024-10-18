@@ -38,7 +38,7 @@ const DialogMenu: Component<DialogMenuProps> = ({ name, children }) => {
       <button
         type="button"
         onClick={openDialog}
-        class="px-4 py-2 rounded hover:text-gray-500 focus:outline-none focus:ring-2 focus:text-gray-500 focus:ring-opacity-50"
+        class="px-4 py-2 hover:text-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-full"
       >
         {name}
       </button>
