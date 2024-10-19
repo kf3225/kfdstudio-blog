@@ -6,6 +6,9 @@ export const tags = [
   "Step Functions",
   "Data Engineering",
   "Python",
+  "SolidJS",
+  "Kobalte",
+  "tailwindcss",
 ];
 type ArrayToUnion<T extends readonly string[]> = T[number];
 type Tag = ArrayToUnion<typeof tags>;
@@ -18,6 +21,12 @@ type Post = {
 };
 
 export const posts: Post[] = [
+  {
+    id: 202410192320,
+    url: "https://zenn.dev/keisukef/scraps/106cfdc595d7ce",
+    title: "Kobalteのダイアグラムを開閉する際のアニメーション付与",
+    tags: ["SolidJS", "Kobalte", "tailwindcss"],
+  },
   {
     id: 202410150000,
     url: "https://zenn.dev/keisukef/articles/8b5f5b352db5b8",
