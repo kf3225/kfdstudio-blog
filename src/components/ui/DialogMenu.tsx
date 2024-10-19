@@ -34,7 +34,7 @@ const DialogMenu: Component<DialogMenuProps> = ({ name, children }) => {
   });
 
   return (
-    <div>
+    <>
       <button
         type="button"
         onClick={openDialog}
@@ -64,7 +64,7 @@ const DialogMenu: Component<DialogMenuProps> = ({ name, children }) => {
           </div>
         </Show>
       </Transition>
-    </div>
+    </>
   );
 };
 
