@@ -5,7 +5,7 @@ import iconUrl from "/src/assets/icon.svg";
 
 const Introduction: Component = () => {
   return (
-    <div class="">
+    <>
       <div class="mb-5">
         <h3 class="font-bold mb-4">Comment</h3>
         <div class="mb-4">
@@ -69,7 +69,7 @@ const Introduction: Component = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
