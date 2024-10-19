@@ -7,11 +7,8 @@ const Article: Component = () => {
 
   return (
     <>
-      <SearchBox
-        selectedTags={selectedTags}
-        setSelectedTags={setSelectedTags}
-      />
-      <Post selectedTags={selectedTags} />
+      <SearchBox {...{ selectedTags, setSelectedTags }} />
+      <Post {...{ selectedTags }} />
     </>
   );
 };
