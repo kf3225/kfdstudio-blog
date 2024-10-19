@@ -10,6 +10,24 @@ module.exports = {
         },
       },
     },
+    keyframes: {
+      "content-show": {
+        from: {
+          opacity: 0,
+        },
+        to: {
+          opacity: 1,
+        },
+      },
+      "content-hide": {
+        from: {
+          opacity: 1,
+        },
+        to: {
+          opacity: 0,
+        },
+      },
+    },
   },
   plugins: [],
 };
