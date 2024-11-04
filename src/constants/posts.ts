@@ -9,6 +9,7 @@ export const tags = [
   "SolidJS",
   "Kobalte",
   "tailwindcss",
+  "Zig",
 ];
 type ArrayToUnion<T extends readonly string[]> = T[number];
 type Tag = ArrayToUnion<typeof tags>;
@@ -21,6 +22,12 @@ type Post = {
 };
 
 export const posts: Post[] = [
+  {
+    id: 202411041801,
+    url: "https://zenn.dev/keisukef/scraps/fed370d4025da8",
+    title: "Zigに入門する",
+    tags: ["Zig"],
+  },
   {
     id: 202410192320,
     url: "https://zenn.dev/keisukef/scraps/106cfdc595d7ce",
