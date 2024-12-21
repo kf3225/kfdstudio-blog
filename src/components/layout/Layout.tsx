@@ -1,9 +1,9 @@
 import { A } from "@solidjs/router";
 import type { Component, JSX } from "solid-js";
-import Introduction from "../feature/Introduction";
-import DialogMenu from "../ui/DialogMenu";
 import githubSvgUrl from "/src/assets/github.svg";
 import xSvgUrl from "/src/assets/x.svg";
+import Introduction from "../feature/Introduction";
+import DialogMenu from "../ui/DialogMenu";
 
 const Header: Component = () => {
   const navItemStyle =
