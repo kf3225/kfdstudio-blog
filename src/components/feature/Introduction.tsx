@@ -1,7 +1,7 @@
 import { A } from "@solidjs/router";
 import { type Component, Index } from "solid-js";
-import { skillSet } from "../../constants/skillSet";
 import iconUrl from "/src/assets/icon.svg";
+import { skillSet } from "../../constants/skillSet";
 
 const Introduction: Component = () => {
   return (
