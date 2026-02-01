@@ -26,13 +26,13 @@ export default createRoute(async (c) => {
 
   return c.render(
     <article class="container mx-auto px-4 py-8 max-w-3xl">
-      <a href="/" class="inline-block mb-6 text-blue-600 hover:text-blue-700 transition-colors">
+      <a href="/" class="inline-block mb-6 text-gray-500 hover:text-gray-900 transition-colors text-sm">
         ← 記事一覧に戻る
       </a>
-      <header class="mb-8">
-        <h1 class="text-4xl font-bold text-blue-600 mb-4">{module.frontmatter.title}</h1>
-        <p class="text-gray-600 text-lg mb-4">{module.frontmatter.description}</p>
-        <div class="flex items-center gap-4 text-sm text-gray-500">
+      <header class="mb-10">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-3">{module.frontmatter.title}</h1>
+        <p class="text-gray-600 mb-4">{module.frontmatter.description}</p>
+        <div class="flex items-center gap-4 text-xs text-gray-400">
           <time>{new Date(module.frontmatter.pubDate).toLocaleDateString("ja-JP")}</time>
           {module.frontmatter.updatedDate && (
             <>
@@ -47,14 +47,14 @@ export default createRoute(async (c) => {
         {module.frontmatter.tags && module.frontmatter.tags.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-4">
             {module.frontmatter.tags.map((tag) => (
-              <span key={tag} class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+              <span key={tag} class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs">
                 #{tag}
               </span>
             ))}
           </div>
         )}
       </header>
-      <div class="prose prose-blue max-w-none">
+      <div class="prose prose-gray max-w-none">
         <Content />
       </div>
     </article>,

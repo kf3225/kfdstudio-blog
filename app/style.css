@@ -2,12 +2,16 @@
 @import "highlight.js/styles/github-dark.css";
 
 @layer base {
+  .prose {
+    @apply text-gray-700 leading-relaxed;
+  }
+
   .prose pre {
-    @apply bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto my-4;
+    @apply bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto my-6;
   }
 
   .prose code {
-    @apply bg-gray-100 text-pink-600 px-1 py-0.5 rounded text-sm;
+    @apply bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm font-mono;
   }
 
   .prose pre code {
@@ -15,59 +19,83 @@
   }
 
   .prose h1 {
-    @apply text-3xl font-bold text-blue-600 mt-8 mb-4;
+    @apply text-2xl font-semibold text-gray-900 mt-10 mb-4 tracking-tight;
   }
 
   .prose h2 {
-    @apply text-2xl font-bold text-blue-700 mt-6 mb-3;
+    @apply text-xl font-semibold text-gray-900 mt-8 mb-3 tracking-tight;
   }
 
   .prose h3 {
-    @apply text-xl font-semibold text-blue-800 mt-4 mb-2;
+    @apply text-lg font-medium text-gray-900 mt-6 mb-2 tracking-tight;
+  }
+
+  .prose h4 {
+    @apply text-base font-medium text-gray-900 mt-4 mb-2;
   }
 
   .prose p {
-    @apply text-gray-700 leading-relaxed mb-4;
+    @apply mb-4 text-gray-700;
   }
 
   .prose ul {
-    @apply list-disc list-inside mb-4 text-gray-700;
+    @apply list-disc list-inside mb-4 text-gray-700 space-y-1;
   }
 
   .prose ol {
-    @apply list-decimal list-inside mb-4 text-gray-700;
+    @apply list-decimal list-inside mb-4 text-gray-700 space-y-1;
   }
 
   .prose li {
-    @apply mb-1;
+    @apply text-gray-700;
   }
 
   .prose a {
-    @apply text-blue-600 hover:text-blue-700 hover:underline;
+    @apply text-gray-700 hover:text-gray-900 underline underline-offset-2 transition-colors;
   }
 
   .prose blockquote {
-    @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4;
+    @apply border-l-2 border-gray-300 pl-4 text-gray-600 my-6 italic;
   }
 
   .prose hr {
-    @apply border-gray-300 my-6;
+    @apply border-gray-200 my-8;
   }
 
   .prose img {
-    @apply rounded-lg shadow-md my-4;
+    @apply rounded-lg my-6 border border-gray-200;
+  }
+
+  .prose strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .prose em {
+    @apply text-gray-700;
   }
 
   .prose table {
-    @apply w-full border-collapse mb-4;
+    @apply w-full border-collapse my-6 border border-gray-200;
   }
 
   .prose th,
   .prose td {
-    @apply border border-gray-300 px-4 py-2 text-left;
+    @apply border-b border-gray-200 px-4 py-3 text-left text-sm;
   }
 
   .prose th {
-    @apply bg-gray-100 font-semibold;
+    @apply bg-gray-50 font-medium text-gray-900;
+  }
+
+  .prose tbody tr:hover {
+    @apply bg-gray-50;
+  }
+
+  .prose code:not(pre code) {
+    @apply text-gray-800;
+  }
+
+  .prose :not(pre) > code {
+    @apply text-gray-800;
   }
 }

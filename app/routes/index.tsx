@@ -7,20 +7,20 @@ export default function BlogIndex() {
   });
 
   return (
-    <div class="container mx-auto px-4 py-8">
-      <h1 class="text-4xl font-bold text-blue-600 mb-8">ブログ</h1>
-      <div class="space-y-8">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+      <h1 class="text-3xl font-semibold text-gray-900 mb-8">ブログ</h1>
+      <div class="space-y-12">
         {Object.entries(modules).map(([id, module]) => {
           if (module.frontmatter) {
             return (
-              <article class="border-b pb-8">
+              <article class="pb-8">
                 <a
                   href={`/blog/${id.match(/(\d{4}-\d{2}-\d{2}-[\w-]+)\.mdx$/)?.[1]}`}
-                  class="block hover:text-blue-600 transition-colors"
+                  class="block hover:text-gray-900 transition-colors text-gray-700"
                 >
-                  <h2 class="text-2xl font-bold mb-2">{module.frontmatter.title}</h2>
-                  <p class="text-gray-600 mb-4">{module.frontmatter.description}</p>
-                  <div class="text-sm text-gray-500">
+                  <h2 class="text-xl font-semibold mb-2">{module.frontmatter.title}</h2>
+                  <p class="text-gray-500 mb-3">{module.frontmatter.description}</p>
+                  <div class="text-xs text-gray-400">
                     <time>{new Date(module.frontmatter.pubDate).toLocaleDateString("ja-JP")}</time>
                   </div>
                 </a>
