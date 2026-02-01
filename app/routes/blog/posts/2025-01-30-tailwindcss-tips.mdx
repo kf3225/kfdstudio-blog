@@ -14,9 +14,9 @@ JITモードは、使用するクラスのみを生成します。設定ファ�
 ```javascript
 // tailwind.config.js
 module.exports = {
-  mode: 'jit',
-  content: ['./src/**/*.{html,js}'],
-}
+  mode: "jit",
+  content: ["./src/**/*.{html,js}"],
+};
 ```
 
 ## 任意の値
@@ -24,9 +24,7 @@ module.exports = {
 ブラケット記法で任意の値を使用できます。
 
 ```html
-<div class="w-[123px] h-[456px] bg-[#1da1f2]">
-  カスタム値
-</div>
+<div class="w-[123px] h-[456px] bg-[#1da1f2]">カスタム値</div>
 ```
 
 ## 状態バリアント
@@ -34,9 +32,7 @@ module.exports = {
 ダッシュ記法で複数の状態を組み合わせられます。
 
 ```html
-<button class="hover:focus:bg-blue-700">
-  ホバー時かつフォーカス時
-</button>
+<button class="hover:focus:bg-blue-700">ホバー時かつフォーカス時</button>
 ```
 
 ## @applyディレクティブ
@@ -54,9 +50,7 @@ module.exports = {
 ダークモードの対応も簡単です。
 
 ```html
-<div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-  ダークモード対応
-</div>
+<div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">ダークモード対応</div>
 ```
 
 ## スマート検索
@@ -65,5 +59,5 @@ module.exports = {
 
 ```html
 <!-- bg-blue-500, bg-blue-600, bg-blue-700 などが補完される -->
-<div class="bg-b">
+<div class="bg-b"></div>
 ```

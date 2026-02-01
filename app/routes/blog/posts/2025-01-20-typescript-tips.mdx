@@ -15,7 +15,7 @@ tags: ["typescript", "programming"]
 type IsArray<T> = T extends any[] ? true : false;
 
 type Test1 = IsArray<string[]>; // true
-type Test2 = IsArray<string>;   // false
+type Test2 = IsArray<string>; // false
 ```
 
 ## Template Literal Types
@@ -25,7 +25,7 @@ type Test2 = IsArray<string>;   // false
 ```typescript
 type EventName<T extends string> = `on${Capitalize<T>}`;
 
-type ClickEvent = EventName<'click'>; // 'onClick'
+type ClickEvent = EventName<"click">; // 'onClick'
 ```
 
 ## Mapped Types
