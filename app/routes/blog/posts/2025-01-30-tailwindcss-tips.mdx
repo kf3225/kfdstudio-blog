@@ -1,0 +1,69 @@
+---
+title: TailwindCSSの便利な機能
+description: TailwindCSSの便利であまり知られていない機能を紹介します
+pubDate: 2025-01-30
+tags: ["css", "tailwind"]
+---
+
+# TailwindCSSの便利な機能
+
+## JIT（Just-In-Time）モード
+
+JITモードは、使用するクラスのみを生成します。設定ファイルで有効化：
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  mode: 'jit',
+  content: ['./src/**/*.{html,js}'],
+}
+```
+
+## 任意の値
+
+ブラケット記法で任意の値を使用できます。
+
+```html
+<div class="w-[123px] h-[456px] bg-[#1da1f2]">
+  カスタム値
+</div>
+```
+
+## 状態バリアント
+
+ダッシュ記法で複数の状態を組み合わせられます。
+
+```html
+<button class="hover:focus:bg-blue-700">
+  ホバー時かつフォーカス時
+</button>
+```
+
+## @applyディレクティブ
+
+既存のクラスをコンポーネント内で再利用。
+
+```css
+.btn {
+  @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600;
+}
+```
+
+## Dark Mode
+
+ダークモードの対応も簡単です。
+
+```html
+<div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+  ダークモード対応
+</div>
+```
+
+## スマート検索
+
+不完全なクラス名でも補完されます。
+
+```html
+<!-- bg-blue-500, bg-blue-600, bg-blue-700 などが補完される -->
+<div class="bg-b">
+```

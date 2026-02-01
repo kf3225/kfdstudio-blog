@@ -1,0 +1,47 @@
+---
+title: React Server Componentsの基礎
+description: React Server Componentsの仕組みと基本的な使い方について解説します
+pubDate: 2025-01-15
+tags: ["react", "frontend"]
+---
+
+# React Server Componentsの基礎
+
+React Server Components（RSC）は、サーバーサイドでコンポーネントをレンダリングする機能です。
+
+## 特徴
+
+- クライアントへのバンドルサイズが削減される
+- データベースやファイルシステムに直接アクセスできる
+- セキュリティが向上する（サーバーサイドでのみ実行）
+
+## 使い方
+
+```tsx
+// Server Component (デフォルト)
+async function UserProfile({ id }: { id: string }) {
+  const user = await db.query.users.findFirst({ where: eq(users.id, id) });
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+
+// Client Component
+'use client';
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+## 注意点
+
+- イベントハンドラーはClient Componentでのみ使用可能
+- ReactフックはClient Componentでのみ使用可能
+- Server Component内でClient Componentをインポート可能

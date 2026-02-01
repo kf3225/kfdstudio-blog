@@ -14,18 +14,24 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "hono": "^4.11.7",
-    "honox": "^0.1.53"
+    "honox": "^0.1.53",
+    "marked": "^17.0.1"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.22.1",
     "@hono/vite-build": "^1.9.2",
     "@hono/vite-dev-server": "^0.24.1",
     "@hono/vite-ssg": "^0.3.3",
+    "@mdx-js/rollup": "^3.1.1",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "cloudflare-workers": "link:@hono/vite-build/cloudflare-workers",
     "oxfmt": "^0.27.0",
     "oxlint": "^1.42.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.2.0",
     "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^4.1.18",
     "vite": "^7.3.1",

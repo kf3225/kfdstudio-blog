@@ -1,0 +1,53 @@
+---
+title: TypeScriptの高度な型テクニック
+description: TypeScriptで活用できる高度な型テクニックをいくつか紹介します
+pubDate: 2025-01-20
+tags: ["typescript", "programming"]
+---
+
+# TypeScriptの高度な型テクニック
+
+## Conditional Types
+
+条件に基づいて型を選択できます。
+
+```typescript
+type IsArray<T> = T extends any[] ? true : false;
+
+type Test1 = IsArray<string[]>; // true
+type Test2 = IsArray<string>;   // false
+```
+
+## Template Literal Types
+
+文字列リテラル型を連結できます。
+
+```typescript
+type EventName<T extends string> = `on${Capitalize<T>}`;
+
+type ClickEvent = EventName<'click'>; // 'onClick'
+```
+
+## Mapped Types
+
+オブジェクトの各プロパティを変換できます。
+
+```typescript
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+```
+
+## Utility Types
+
+TypeScriptに組み込まれている便利な型。
+
+- `Partial<T>` - 全てのプロパティをオプショナルに
+- `Required<T>` - 全てのプロパティを必須に
+- `Pick<T, K>` - 特定のプロパティのみ抽出
+- `Omit<T, K>` - 特定のプロパティを除外
+- `Record<K, T>` - 特定のキーを持つオブジェクト型

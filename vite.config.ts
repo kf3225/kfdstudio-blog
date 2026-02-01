@@ -1,8 +1,10 @@
-import adapter from "@hono/vite-dev-server/cloudflare";
+import mdx from "@mdx-js/rollup";
 import client from "honox/vite/client";
 import tailwindcss from "@tailwindcss/vite";
 import honox from "honox/vite";
 import ssg from "@hono/vite-ssg";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 
 const entry = "./app/server.ts";
@@ -16,19 +18,20 @@ export default defineConfig(({ mode }) => {
         }),
       ],
     };
-  } else {
-    return {
-      build: {
-        emptyOutDir: false,
-      },
-      plugins: [
-        honox({
-          entry,
-          devServer: { adapter },
-        }),
-        tailwindcss(),
-        ssg({ entry }),
-      ],
-    };
   }
+
+  return {
+    build: {
+      emptyOutDir: false,
+    },
+    plugins: [
+      honox(),
+      mdx({
+        jsxImportSource: "hono/jsx",
+        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      }),
+      tailwindcss(),
+      ssg({ entry }),
+    ],
+  };
 });

@@ -1,0 +1,59 @@
+---
+title: Cloudflare Workersのパフォーマンス最適化
+description: Cloudflare Workersで高速なアプリケーションを構築するためのベストプラクティス
+pubDate: 2025-01-25
+tags: ["cloudflare", "performance"]
+---
+
+# Cloudflare Workersのパフォーマンス最適化
+
+## キャッシング戦略
+
+### Cache API
+
+```typescript
+export default {
+  async fetch(request, env) {
+    const cache = caches.default;
+    const cacheKey = new Request(request.url, request);
+
+    let response = await cache.match(cacheKey);
+    if (response) return response;
+
+    response = await fetch(request);
+    response = new Response(response.body, response);
+    response.headers.set('Cache-Control', 'public, max-age=3600');
+
+    await cache.put(cacheKey, response.clone());
+    return response;
+  }
+}
+```
+
+## 非同期処理の最適化
+
+### 並列リクエスト
+
+```typescript
+async function fetchData() {
+  const [data1, data2, data3] = await Promise.all([
+    fetch('/api/1').then(r => r.json()),
+    fetch('/api/2').then(r => r.json()),
+    fetch('/api/3').then(r => r.json()),
+  ]);
+
+  return { data1, data2, data3 };
+}
+```
+
+## メモリ管理
+
+- 不要なデータは解放する
+- 大きなJSONはストリーミングで処理する
+- KVは頻繁な読み取りに、R2は大きなファイルに使用
+
+## エッジコンピューティングの活用
+
+- ユーザーに最も近いエッジで処理を実行
+- 地理的なロケーションに基づいたコンテンツ配信
+- 静的アセットのキャッシュ活用
