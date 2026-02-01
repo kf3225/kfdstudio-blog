@@ -26,7 +26,10 @@ export default createRoute(async (c) => {
 
   return c.render(
     <article class="container mx-auto px-4 py-8 max-w-3xl">
-      <a href="/" class="inline-block mb-6 text-gray-500 hover:text-gray-900 transition-colors text-sm">
+      <a
+        href="/"
+        class="inline-block mb-6 text-gray-500 hover:text-gray-900 transition-colors text-sm"
+      >
         ← 記事一覧に戻る
       </a>
       <header class="mb-10">
