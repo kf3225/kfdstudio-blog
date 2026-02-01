@@ -1,0 +1,28 @@
+{
+  "name": "kfdstudio-blog",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build --mode client && vite build",
+    "deploy": "npm run build && wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "hono": "^4.11.7",
+    "honox": "^0.1.53"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.22.1",
+    "@hono/vite-build": "^1.9.2",
+    "@hono/vite-dev-server": "^0.24.1",
+    "@hono/vite-ssg": "^0.3.3",
+    "@tailwindcss/vite": "^4.1.18",
+    "cloudflare-workers": "link:@hono/vite-build/cloudflare-workers",
+    "oxfmt": "^0.27.0",
+    "oxlint": "^1.42.0",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1",
+    "vite-build": "link:@hono/vite-build",
+    "wrangler": "^4.4.0"
+  }
+}

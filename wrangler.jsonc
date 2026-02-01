@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kfdstudio-blog",
+  "main": "./dist/index.js",
+  "compatibility_date": "2025-04-03",
+  "assets": {
+    "directory": "./dist"
+  }
+}
