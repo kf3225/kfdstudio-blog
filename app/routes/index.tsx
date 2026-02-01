@@ -15,7 +15,7 @@ export default function BlogIndex() {
             return (
               <article class="border-b pb-8">
                 <a
-                  href={`${id.replace(/\.mdx$/, "")}`}
+                  href={`/blog/${id.match(/(\d{4}-\d{2}-\d{2}-[\w-]+)\.mdx$/)?.[1]}`}
                   class="block hover:text-blue-600 transition-colors"
                 >
                   <h2 class="text-2xl font-bold mb-2">{module.frontmatter.title}</h2>
