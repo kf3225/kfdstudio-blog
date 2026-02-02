@@ -180,7 +180,14 @@ describe("SearchIndex", () => {
       searchIndex.addItems(mockItems);
 
       const items1 = searchIndex.getAllItems();
-      items1.push({ id: "3", slug: "3", title: "3", description: "3", content: "3", pubDate: "2024-01-01" } as SearchableItem);
+      items1.push({
+        id: "3",
+        slug: "3",
+        title: "3",
+        description: "3",
+        content: "3",
+        pubDate: "2024-01-01",
+      } as SearchableItem);
 
       const items2 = searchIndex.getAllItems();
 
@@ -202,7 +209,7 @@ describe("DefaultScoreCalculator", () => {
     tags: ["typescript"],
   };
 
-   beforeEach(() => {
+  beforeEach(() => {
     calculator = new DefaultScoreCalculator();
   });
 
