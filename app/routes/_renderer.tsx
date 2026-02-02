@@ -8,6 +8,7 @@ export default jsxRenderer(({ children }) => {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
         <Link href="/app/style.css" rel="stylesheet" />
         <Script src="/app/client.ts" />
       </head>

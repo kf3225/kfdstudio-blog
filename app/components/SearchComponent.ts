@@ -58,7 +58,7 @@ export class SearchComponent {
 
       try {
         const response = await fetch(
-          `${this.config.apiEndpoint}?q=${encodeURIComponent(query)}&limit=${this.config.resultsLimit}`
+          `${this.config.apiEndpoint}?q=${encodeURIComponent(query)}&limit=${this.config.resultsLimit}`,
         );
 
         if (!response.ok) {
@@ -120,7 +120,7 @@ export class SearchComponent {
           <div class="text-sm font-medium text-gray-900">${this.escapeHtml(result.title)}</div>
           <div class="text-xs text-gray-500 mt-1 line-clamp-1">${this.escapeHtml(result.description)}</div>
         </a>
-      `
+      `,
       )
       .join();
     resultsContainer.classList.remove("hidden");
@@ -133,7 +133,8 @@ export class SearchComponent {
       return;
     }
 
-    resultsContainer.innerHTML = '<div class="text-sm text-gray-500 px-4 py-3">検索結果が見つかりません</div>';
+    resultsContainer.innerHTML =
+      '<div class="text-sm text-gray-500 px-4 py-3">検索結果が見つかりません</div>';
     resultsContainer.classList.remove("hidden");
   }
 
