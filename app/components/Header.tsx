@@ -15,7 +15,7 @@ export const Header: FC<HeaderProps> = ({ currentPath: _currentPath }) => {
             </a>
           </div>
 
-          <div class="w-80">
+          <div class="w-80 flex items-center justify-center">
             <div id="search-component"></div>
           </div>
         </div>

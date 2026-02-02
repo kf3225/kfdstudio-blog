@@ -5,7 +5,6 @@ export default function BlogIndex() {
 
   return (
     <div class="container mx-auto px-4 py-8 max-w-3xl">
-      <h1 class="text-3xl font-semibold text-gray-900 mb-8">ブログ</h1>
       <div class="space-y-12">
         {Object.entries(modules).map(([id, module]) => {
           if (!module.frontmatter) {
