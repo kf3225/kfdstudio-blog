@@ -1,3 +1,5 @@
+import type { FC } from "hono/jsx";
+
 export interface Meta {
   title: string;
   description: string;
@@ -20,4 +22,5 @@ export interface BlogPost {
 
 export interface MDXModule {
   frontmatter: Meta;
+  default: FC;
 }

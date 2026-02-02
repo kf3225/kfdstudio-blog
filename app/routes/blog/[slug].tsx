@@ -1,27 +1,19 @@
 import { createRoute } from "honox/factory";
-import type { Meta } from "../../lib/types";
+import { loadBlogModules, formatDate, findModuleBySlug } from "../../lib/blog-loader";
 
 export default createRoute(async (c) => {
   const slug = c.req.param("slug");
 
-  // @ts-ignore
-  const modules = import.meta.glob<{ frontmatter: Meta; default: any }>("./posts/*.mdx", {
-    eager: true,
-  });
+  const modules = loadBlogModules();
+  const module = findModuleBySlug(modules, slug);
 
-  const matchedPath = Object.keys(modules).find((path) => path.endsWith(`${slug}.mdx`));
-
-  if (!matchedPath) {
+  if (!module || !module.frontmatter || !module.frontmatter.title) {
     return c.notFound();
   }
 
-  const module = modules[matchedPath];
+  const pubDate = formatDate(module.frontmatter.pubDate);
+  const updatedDate = formatDate(module.frontmatter.updatedDate);
 
-  if (!module.frontmatter || !module.frontmatter.title) {
-    return c.notFound();
-  }
-
-  // MDXコンポーネントをレンダリング
   const Content = module.default;
 
   return c.render(
@@ -36,13 +28,13 @@ export default createRoute(async (c) => {
         <h1 class="text-3xl font-semibold text-gray-900 mb-3">{module.frontmatter.title}</h1>
         <p class="text-gray-600 mb-4">{module.frontmatter.description}</p>
         <div class="flex items-center gap-4 text-xs text-gray-400">
-          <time>{new Date(module.frontmatter.pubDate).toLocaleDateString("ja-JP")}</time>
-          {module.frontmatter.updatedDate && (
+          <time>{pubDate}</time>
+          {updatedDate && (
             <>
               <span>•</span>
               <time>
                 更新:
-                {new Date(module.frontmatter.updatedDate).toLocaleDateString("ja-JP")}
+                {updatedDate}
               </time>
             </>
           )}
