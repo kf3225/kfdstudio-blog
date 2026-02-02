@@ -35,7 +35,8 @@ export default createRoute(async (c) => {
     };
   });
 
-  const validItems: RSSFeedItem[] = items.filter((item): item is RSSFeedItem => item !== null)
+  const validItems: RSSFeedItem[] = items
+    .filter((item): item is RSSFeedItem => item !== null)
     .sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
   if (validItems.length === 0) {

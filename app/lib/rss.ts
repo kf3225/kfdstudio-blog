@@ -45,9 +45,7 @@ ${this.renderItems(items)}
     return items
       .map((item) => {
         const categories = item.tags
-          ? item.tags
-              .map((tag) => `    <category>${this.escapeXml(tag)}</category>`)
-              .join("\n")
+          ? item.tags.map((tag) => `    <category>${this.escapeXml(tag)}</category>`).join("\n")
           : "";
 
         return `    <item>

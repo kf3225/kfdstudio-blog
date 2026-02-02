@@ -6,4 +6,11 @@
   "assets": {
     "directory": "./dist",
   },
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "blog-search-index",
+      "preview_id": "blog-search-index-preview"
+    }
+  ]
 }

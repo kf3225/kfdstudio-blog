@@ -1,3 +1,13 @@
+interface SearchApiResponse {
+  results: SearchResult[];
+}
+
+interface SearchResult {
+  slug: string;
+  title: string;
+  description: string;
+}
+
 export class SearchComponent {
   private readonly containerId: string;
   private readonly config: SearchComponentConfig;
@@ -65,8 +75,8 @@ export class SearchComponent {
           throw new Error(`Search failed: ${response.statusText}`);
         }
 
-        const data = await response.json();
-
+        const data = await response.json() as SearchApiResponse;
+        
         if (data.results && data.results.length > 0) {
           this.showResults(data.results);
         } else {
