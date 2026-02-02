@@ -10,7 +10,7 @@
     {
       "binding": "KV",
       "id": "blog-search-index",
-      "preview_id": "blog-search-index-preview"
-    }
-  ]
+      "preview_id": "blog-search-index-preview",
+    },
+  ],
 }

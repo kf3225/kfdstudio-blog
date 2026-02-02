@@ -75,8 +75,8 @@ export class SearchComponent {
           throw new Error(`Search failed: ${response.statusText}`);
         }
 
-        const data = await response.json() as SearchApiResponse;
-        
+        const data = (await response.json()) as SearchApiResponse;
+
         if (data.results && data.results.length > 0) {
           this.showResults(data.results);
         } else {

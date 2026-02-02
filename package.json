@@ -11,7 +11,10 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -29,6 +32,7 @@
     "@mdx-js/rollup": "^3.1.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
+    "@vitest/ui": "^4.0.18",
     "cloudflare-workers": "link:@hono/vite-build/cloudflare-workers",
     "oxfmt": "^0.27.0",
     "oxlint": "^1.42.0",
@@ -38,6 +42,7 @@
     "tailwindcss": "^4.1.18",
     "vite": "^7.3.1",
     "vite-build": "link:@hono/vite-build",
+    "vitest": "^4.0.18",
     "wrangler": "^4.4.0"
   },
   "simple-git-hooks": {
