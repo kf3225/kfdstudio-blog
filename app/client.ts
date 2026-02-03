@@ -1,4 +1,5 @@
 import { createClient } from "honox/client";
+import hljs from "highlight.js";
 
 createClient();
 
@@ -13,6 +14,10 @@ const initSearch = (): void => {
 
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
+  interface SearchApiResponse {
+    results: any[];
+  }
+
   const performSearch = async (query: string): Promise<void> => {
     if (!query.trim()) {
       searchResults.classList.add("hidden");
@@ -22,7 +27,7 @@ const initSearch = (): void => {
 
     try {
       const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&limit=5`);
-      const data = await response.json();
+      const data: SearchApiResponse = await response.json();
 
       if (data.results && data.results.length > 0) {
         searchResults.innerHTML = data.results
@@ -82,10 +87,7 @@ const escapeHtml = (text: string): string => {
 
 const initCodeHighlighting = (): void => {
   document.querySelectorAll("pre code").forEach((block) => {
-    const hljs = (globalThis as any).hljs;
-    if (hljs) {
-      hljs.highlightElement(block as HTMLElement);
-    }
+    hljs.highlightElement(block as HTMLElement);
   });
 };
 
