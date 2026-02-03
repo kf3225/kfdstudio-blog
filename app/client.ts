@@ -15,7 +15,13 @@ const initSearch = (): void => {
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
   interface SearchApiResponse {
-    results: any[];
+    results: SearchResultItem[];
+  }
+
+  interface SearchResultItem {
+    slug: string;
+    title: string;
+    description: string;
   }
 
   const performSearch = async (query: string): Promise<void> => {
@@ -32,7 +38,7 @@ const initSearch = (): void => {
       if (data.results && data.results.length > 0) {
         searchResults.innerHTML = data.results
           .map(
-            (result: any) => `
+            (result: SearchResultItem) => `
               <a href="/blog/${result.slug}" class="block px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0">
                 <div class="text-sm font-medium text-gray-900">${escapeHtml(result.title)}</div>
                 <div class="text-xs text-gray-500 mt-1 line-clamp-1">${escapeHtml(result.description)}</div>
