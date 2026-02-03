@@ -1,9 +1,3 @@
-import { jsx } from "hono/jsx";
-
-interface SearchApiResponse {
-  results: SearchResult[];
-}
-
 interface SearchResult {
   slug: string;
   title: string;
@@ -35,7 +29,10 @@ export const SearchComponent = () => {
         autocomplete="off"
       />
       {state.isResultsVisible && (
-        <div id="search-results" class="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-w-md">
+        <div
+          id="search-results"
+          class="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-w-md"
+        >
           {state.isLoading ? (
             <div class="text-sm text-gray-500 px-4 py-3">検索中...</div>
           ) : state.results.length > 0 ? (
