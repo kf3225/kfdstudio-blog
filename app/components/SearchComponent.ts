@@ -38,7 +38,7 @@ export class SearchComponent {
 
   private render(): string {
     return `
-      <div id="search-container" class="relative">
+      <div id="search-container" class="relative w-full">
         <input
           type="text"
           id="search-input"
@@ -46,7 +46,7 @@ export class SearchComponent {
           class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
           autocomplete="off"
         />
-        <div id="search-results" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"></div>
+        <div id="search-results" class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-w-md"></div>
       </div>
     `;
   }
