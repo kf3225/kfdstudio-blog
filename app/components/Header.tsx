@@ -15,8 +15,17 @@ export const Header: FC<HeaderProps> = ({ currentPath: _currentPath }) => {
             </a>
           </div>
 
-          <div class="ml-auto flex items-center">
-            <div id="search-component"></div>
+          <div class="ml-auto flex items-center justify-center w-80">
+            <div id="search-container" class="relative w-full">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="記事を検索..."
+                class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+                autocomplete="off"
+              />
+              <div id="search-results" class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"></div>
+            </div>
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
       plugins: [
         client({
           input: ["/app/client.ts", "/app/style.css"],
+          islands: true,
         }),
       ],
     };
