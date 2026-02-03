@@ -24,7 +24,10 @@ export const Header: FC<HeaderProps> = ({ currentPath: _currentPath }) => {
                 class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
                 autocomplete="off"
               />
-              <div id="search-results" class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"></div>
+              <div
+                id="search-results"
+                class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"
+              ></div>
             </div>
           </div>
         </div>
