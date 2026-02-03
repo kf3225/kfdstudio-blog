@@ -179,7 +179,14 @@ describe("searchIndex", () => {
       const searchIndexObj = createSearchIndex();
       const indexWithItems = addItems(searchIndexObj, mockItems);
       const items1 = getAllItems(indexWithItems);
-      items1.push({ id: "3", slug: "3", title: "3", description: "3", content: "3", pubDate: "2024-01-01" } as SearchableItem);
+      items1.push({
+        id: "3",
+        slug: "3",
+        title: "3",
+        description: "3",
+        content: "3",
+        pubDate: "2024-01-01",
+      } as SearchableItem);
 
       const items2 = getAllItems(indexWithItems);
 

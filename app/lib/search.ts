@@ -89,11 +89,7 @@ export const clearIndex = (index: SearchIndex): SearchIndex => {
   };
 };
 
-export const searchIndex = (
-  index: SearchIndex,
-  query: string,
-  limit = 10,
-): SearchResult[] => {
+export const searchIndex = (index: SearchIndex, query: string, limit = 10): SearchResult[] => {
   if (!query.trim()) {
     return [];
   }
