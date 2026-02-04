@@ -1,0 +1,73 @@
+---
+title: JavaScript async/await 完全ガイド
+description: JavaScriptのasync/awaitの基礎から応用まで詳しく解説します。Promiseとの違いやエラーハンドリングのベストプラクティスも紹介。
+pubDate: 2025-01-05
+tags: ["javascript", "async", "programming"]
+slug: javascript-async-await-guide
+---
+
+# JavaScript async/await 完全ガイド
+
+JavaScriptにおける非同期処理は、async/awaitの導入により大幅に扱いやすくなりました。この記事では、async/awaitの基礎から応用まで解説します。
+
+## 基本構文
+
+async/awaitはPromiseをよりシンプルに記述するための構文です。
+
+```javascript
+// Promiseを使った書き方
+fetchData()
+  .then((data) => processData(data))
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+
+// async/awaitを使った書き方
+async function handleData() {
+  try {
+    const data = await fetchData();
+    const result = await processData(data);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+## エラーハンドリング
+
+async/awaitではtry-catchブロックを使用してエラーを捕捉します。
+
+```javascript
+async function fetchDataWithRetry(url, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Network error");
+      return await response.json();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 1000 * (i + 1)));
+    }
+  }
+}
+```
+
+## 並列処理
+
+複数の非同期処理を並列で実行する場合はPromise.allを使用します。
+
+```javascript
+async function fetchMultipleData() {
+  const [users, posts, comments] = await Promise.all([
+    fetch("/api/users").then((r) => r.json()),
+    fetch("/api/posts").then((r) => r.json()),
+    fetch("/api/comments").then((r) => r.json()),
+  ]);
+
+  return { users, posts, comments };
+}
+```
+
+## まとめ
+
+async/awaitはコードを同期的に見える形で記述できるため、可読性が高く、エラーハンドリングも直感的です。適切に使用することで、効率的な非同期処理を実装できます。

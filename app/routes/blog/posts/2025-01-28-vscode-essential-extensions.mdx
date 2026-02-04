@@ -1,0 +1,126 @@
+---
+title: VS Code 拡張機能おすすめ10選
+description: 開発効率を向上させるVS Codeの必須拡張機能を10個紹介します。フロントエンド開発者に特化した選定です。
+pubDate: 2025-01-28
+tags: ["vscode", "tools", "productivity"]
+slug: vscode-essential-extensions
+---
+
+# VS Code 拡張機能おすすめ10選
+
+VS Codeの拡張機能を活用することで、開発効率を大幅に向上させることができます。
+
+## 1. ESLint
+
+コードの品質と一貫性を保つための必須ツールです。
+
+- 潜在的なバグを検出
+- コーディングスタイルの一貫性
+- 自動修正機能
+
+```json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
+
+## 2. Prettier
+
+コードフォーマッターとして、コードのスタイルを統一します。
+
+- 一貫したコードスタイル
+- 多くの言語に対応
+- ESLintと連携可能
+
+## 3. GitLens
+
+Gitの機能を強化し、Git操作をより簡単にします。
+
+- コードの作成者情報の表示
+- コミット履歴の可視化
+- ブランチ比較機能
+
+## 4. Path Intellisense
+
+ファイルパスの自動補完を提供します。
+
+- インポート文の自動補完
+- 相対パスと絶対パスのサポート
+- 画像パスの補完
+
+## 5. Auto Rename Tag
+
+開始タグを編集すると、終了タグも自動的に更新されます。
+
+- HTML/XMLの編集効率向上
+- タグの不一致を防止
+- 即座に反応
+
+## 6. CSS Peek
+
+HTML/JSXで定義されたクラス名からCSS定義にジャンプできます。
+
+- クラス名をCmd+クリックで定義へジャンプ
+- 複数の定義がある場合はリスト表示
+- コンポーネントのスタイル管理に便利
+
+## 7. Live Server
+
+ローカル開発サーバーを自動的に起動し、変更を自動リロードします。
+
+- ファイル保存時に自動リロード
+- 静的サイトの開発に最適
+- ポート設定が可能
+
+## 8. Import Cost
+
+インポートしたパッケージのサイズを表示します。
+
+- パッケージサイズの可視化
+- バンドルサイズの最適化に貢献
+- 色分けで視認性向上
+
+## 9. Error Lens
+
+エラーや警告をコードの横にインラインで表示します。
+
+- エラー内容の即座の確認
+- マウスオーバー不要
+- 問題パネルより見やすい
+
+## 10. Todo Tree
+
+TODOコメントをツリービューで一覧表示します。
+
+```javascript
+// TODO: リファクタリングが必要
+// FIXME: バグ修正が必要
+// NOTE: 注釈
+```
+
+- TODOコメントの集中管理
+- タグによるフィルタリング
+- 検索とジャンプ機能
+
+## 設定例
+
+settings.jsonでの推奨設定:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}
+```
+
+## まとめ
+
+これらの拡張機能を組み合わせることで、コード品質の向上と開発効率の改善が期待できます。プロジェクトに合わせて適切に選択・カスタマイズしてください。

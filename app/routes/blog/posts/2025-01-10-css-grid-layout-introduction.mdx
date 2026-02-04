@@ -1,0 +1,121 @@
+---
+title: CSS Grid レイアウト入門
+description: CSS Gridを使ったモダンなレイアウト構築方法を解説します。基本的な概念から実践的なテクニックまで網羅。
+pubDate: 2025-01-10
+tags: ["css", "layout", "frontend"]
+slug: css-grid-layout-introduction
+---
+
+# CSS Grid レイアウト入門
+
+CSS Gridは、2次元レイアウトシステムを提供する強力なCSSモジュールです。この記事ではGridの基本的な使い方を解説します。
+
+## Gridの基本
+
+GridコンテナとGridアイテムを作成するには、以下のように記述します。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.item {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+```
+
+## グリッドトラックの定義
+
+列と行のサイズを指定する様々な方法があります。
+
+```css
+/* 固定サイズ */
+grid-template-columns: 200px 1fr 300px;
+
+/* repeat関数 */
+grid-template-columns: repeat(4, 1fr);
+
+/* auto-fitとminmax */
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+/* fr単位 */
+grid-template-rows: 1fr 2fr 1fr;
+```
+
+## グリッドエリア
+
+名前付きグリッドエリアを使用すると、より直感的にレイアウトを組めます。
+
+```css
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.header {
+  grid-area: header;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.main {
+  grid-area: main;
+}
+.footer {
+  grid-area: footer;
+}
+```
+
+## レスポンシブデザイン
+
+Media Queryと組み合わせて、異なる画面サイズに対応します。
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+## 実践的な例
+
+カードレイアウトを作成してみましょう。
+
+```css
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 24px;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+```
+
+## まとめ
+
+CSS Gridは、複雑なレイアウトを簡単に実装できる強力なツールです。Flexboxと組み合わせることで、ほとんどのレイアウト要件を満たすことができます。

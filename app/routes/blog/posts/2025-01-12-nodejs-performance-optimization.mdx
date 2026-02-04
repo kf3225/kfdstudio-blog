@@ -1,0 +1,151 @@
+---
+title: Node.js パフォーマンス最適化
+description: Node.jsアプリケーションのパフォーマンスを向上させるためのテクニックとベストプラクティスを紹介します。
+pubDate: 2025-01-12
+tags: ["nodejs", "performance", "backend"]
+slug: nodejs-performance-optimization
+---
+
+# Node.js パフォーマンス最適化
+
+Node.jsアプリケーションのパフォーマンスを最大化するための重要なテクニックを紹介します。
+
+## 非同期処理の適切な使用
+
+Node.jsはシングルスレッドで動作するため、ブロッキング処理を避けることが重要です。
+
+```javascript
+// 避けるべきコード
+const data = fs.readFileSync("large-file.json");
+processData(data);
+
+// 推奨されるコード
+fs.readFile("large-file.json", (err, data) => {
+  if (err) throw err;
+  processData(data);
+});
+
+// またはasync/awaitを使用
+const data = await fs.promises.readFile("large-file.json");
+processData(data);
+```
+
+## ストリームの活用
+
+大きなファイルを処理する際は、ストリームを使用してメモリ効率を向上させます。
+
+```javascript
+const fs = require("fs");
+const readline = require("readline");
+
+async function processLargeFile(inputPath, outputPath) {
+  const readStream = fs.createReadStream(inputPath);
+  const writeStream = fs.createWriteStream(outputPath);
+
+  const rl = readline.createInterface({
+    input: readStream,
+    crlfDelay: Infinity,
+  });
+
+  for await (const line of rl) {
+    const processed = processLine(line);
+    writeStream.write(processed + "\n");
+  }
+
+  writeStream.end();
+}
+```
+
+## キャッシング戦略
+
+頻繁にアクセスされるデータはキャッシュすることで、処理速度を大幅に向上させます。
+
+```javascript
+const NodeCache = require("node-cache");
+const cache = new NodeCache({ stdTTL: 600 }); // 10分間キャッシュ
+
+async function getUserData(userId) {
+  const cached = cache.get(userId);
+  if (cached) return cached;
+
+  const data = await database.query("SELECT * FROM users WHERE id = ?", [userId]);
+  cache.set(userId, data);
+  return data;
+}
+```
+
+## データベース接続プール
+
+データベース接続を再利用することで、接続オーバーヘッドを削減します。
+
+```javascript
+const mysql = require("mysql2/promise");
+
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "user",
+  password: "password",
+  database: "mydb",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
+async function query(sql, params) {
+  const [rows] = await pool.execute(sql, params);
+  return rows;
+}
+```
+
+## クラスタリング
+
+マルチコアCPUを活用するために、クラスタリングを使用します。
+
+```javascript
+const cluster = require("cluster");
+const numCPUs = require("os").cpus().length;
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
+
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died`);
+    cluster.fork();
+  });
+} else {
+  require("./server");
+}
+```
+
+## ログの最適化
+
+過度なログ出力を避け、適切なログレベルを設定します。
+
+```javascript
+const winston = require("winston");
+
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || "info",
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+  ],
+});
+
+if (process.env.NODE_ENV !== "production") {
+  logger.add(
+    new winston.transports.Console({
+      format: winston.format.simple(),
+    }),
+  );
+}
+```
+
+## まとめ
+
+Node.jsのパフォーマンス最適化には、非同期処理の適切な使用、キャッシング、接続プール、クラスタリングなど様々なテクニックがあります。アプリケーションの特性に合わせて適切な戦略を選択し、実装することが重要です。
