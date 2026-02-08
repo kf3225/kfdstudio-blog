@@ -19,7 +19,7 @@ export const PostList: FC<PostListProps> = ({
   showTags = false,
   selectedTags = [],
   emptyMessage = "記事が見つかりませんでした。",
-  emptyStateClassName = "rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-500",
+  emptyStateClassName = "rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400",
   listClassName = "space-y-16",
   itemClassName = "pb-8 h-[100px]",
   contentClassName = "flex flex-col",
@@ -51,7 +51,7 @@ export const PostList: FC<PostListProps> = ({
           <article class={itemClassName}>
             <a
               href={`/blog/${slug}`}
-              class="block hover:text-gray-900 transition-colors text-gray-700 h-full flex flex-col"
+              class="block hover:text-gray-900 transition-colors text-gray-700 h-full flex flex-col dark:text-gray-300 dark:hover:text-gray-100"
             >
               <div class={contentClassName}>
                 <h2 class="text-xl font-semibold mb-2 line-clamp-1">{module.frontmatter.title}</h2>
@@ -66,7 +66,8 @@ export const PostList: FC<PostListProps> = ({
                         href={buildTagFilterHref(
                           selectedTags.includes(tag) ? selectedTags : [...selectedTags, tag],
                         )}
-                        class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs hover:bg-gray-200 transition-colors"
+                        data-tag-filter-link="true"
+                        class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs hover:bg-gray-200 transition-colors dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                       >
                         #{tag}
                       </a>

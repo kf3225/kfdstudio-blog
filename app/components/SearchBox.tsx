@@ -12,11 +12,11 @@ export const SearchBox: FC<SearchBoxProps> = ({ className = "ml-auto flex items-
           type="text"
           data-search-input
           placeholder=""
-          class="w-full px-3 py-2 pl-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
+          class="w-full px-3 py-2 pl-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 dark:focus:ring-gray-700"
           autocomplete="off"
         />
         <svg
-          class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ export const SearchBox: FC<SearchBoxProps> = ({ className = "ml-auto flex items-
         </svg>
         <div
           data-search-results
-          class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"
+          class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-900 dark:border-gray-700"
         ></div>
       </div>
     </div>

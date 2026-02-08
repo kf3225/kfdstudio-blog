@@ -17,31 +17,31 @@ export const Pagination: FC<PaginationProps> = ({
 }) => {
   return (
     <div class={`w-full ${className}`}>
-      <div class="text-sm text-gray-500 flex items-center gap-8">
+      <div class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-8">
         {prevHref ? (
           <a
             href={prevHref}
-            class="w-20 px-4 py-2 text-center bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            class="w-20 px-4 py-2 text-center bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800"
           >
             前へ
           </a>
         ) : (
-          <span class="w-20 px-4 py-2 text-center text-gray-300 bg-white border border-gray-300 rounded-lg">
+          <span class="w-20 px-4 py-2 text-center text-gray-300 bg-white border border-gray-300 rounded-lg dark:text-gray-600 dark:bg-gray-900 dark:border-gray-800">
             前へ
           </span>
         )}
-        <span class="w-20 text-center text-gray-400 tabular-nums">
+        <span class="w-20 text-center text-gray-400 dark:text-gray-500 tabular-nums">
           {currentPage} / {totalPages}
         </span>
         {nextHref ? (
           <a
             href={nextHref}
-            class="w-20 px-4 py-2 text-center bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            class="w-20 px-4 py-2 text-center bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800"
           >
             次へ
           </a>
         ) : (
-          <span class="w-20 px-4 py-2 text-center text-gray-300 bg-white border border-gray-300 rounded-lg">
+          <span class="w-20 px-4 py-2 text-center text-gray-300 bg-white border border-gray-300 rounded-lg dark:text-gray-600 dark:bg-gray-900 dark:border-gray-800">
             次へ
           </span>
         )}

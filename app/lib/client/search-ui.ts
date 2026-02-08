@@ -12,14 +12,14 @@ const createSearchResultItem = (result: SearchResultItem): HTMLAnchorElement => 
   const link = document.createElement("a");
   link.href = `/blog/${result.slug}`;
   link.className =
-    "block px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0";
+    "block px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 dark:hover:bg-gray-800 dark:border-gray-700";
 
   const title = document.createElement("div");
-  title.className = "text-sm font-medium text-gray-900";
+  title.className = "text-sm font-medium text-gray-900 dark:text-gray-100";
   title.textContent = result.title;
 
   const description = document.createElement("div");
-  description.className = "text-xs text-gray-500 mt-1 line-clamp-1";
+  description.className = "text-xs text-gray-500 mt-1 line-clamp-1 dark:text-gray-400";
   description.textContent = result.description;
 
   link.appendChild(title);
@@ -29,7 +29,7 @@ const createSearchResultItem = (result: SearchResultItem): HTMLAnchorElement => 
 
 const createEmptyResult = (): HTMLDivElement => {
   const empty = document.createElement("div");
-  empty.className = "text-sm text-gray-500 px-4 py-3";
+  empty.className = "text-sm text-gray-500 px-4 py-3 dark:text-gray-400";
   empty.textContent = "検索結果が見つかりません";
   return empty;
 };

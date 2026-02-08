@@ -36,14 +36,14 @@ export default createRoute((c) => {
         <div class="mb-6">
           <a
             href="/"
-            class="inline-block text-gray-500 hover:text-gray-900 transition-colors text-sm"
+            class="inline-block text-gray-500 hover:text-gray-900 transition-colors text-sm dark:text-gray-400 dark:hover:text-gray-100"
           >
             ← 記事一覧に戻る
           </a>
-          <h1 class="text-3xl font-semibold text-gray-900 mb-3">
+          <h1 class="text-3xl font-semibold text-gray-900 mb-3 dark:text-gray-100">
             タグ: #{decodeURIComponent(tag)}
           </h1>
-          <p class="text-gray-600 mb-4">{filteredModules.length}件の記事</p>
+          <p class="text-gray-600 mb-4 dark:text-gray-300">{filteredModules.length}件の記事</p>
         </div>
 
         <PostList

@@ -1,5 +1,6 @@
 @import "tailwindcss" source("../app");
 @import "highlight.js/styles/github-dark.css";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   .prose {
@@ -97,5 +98,60 @@
 
   .prose :not(pre) > code {
     @apply text-gray-800;
+  }
+}
+
+@layer base {
+  .dark .prose {
+    @apply text-gray-300;
+  }
+
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose strong {
+    @apply text-gray-100;
+  }
+
+  .dark .prose p,
+  .dark .prose li,
+  .dark .prose em,
+  .dark .prose a {
+    @apply text-gray-300;
+  }
+
+  .dark .prose a:hover {
+    @apply text-gray-100;
+  }
+
+  .dark .prose code {
+    @apply bg-gray-800 text-gray-200;
+  }
+
+  .dark .prose blockquote {
+    @apply border-gray-700 text-gray-400;
+  }
+
+  .dark .prose hr {
+    @apply border-gray-700;
+  }
+
+  .dark .prose img,
+  .dark .prose table {
+    @apply border-gray-700;
+  }
+
+  .dark .prose th {
+    @apply bg-gray-800 text-gray-100;
+  }
+
+  .dark .prose th,
+  .dark .prose td {
+    @apply border-gray-700;
+  }
+
+  .dark .prose tbody tr:hover {
+    @apply bg-gray-800;
   }
 }

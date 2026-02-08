@@ -47,35 +47,40 @@ export default createRoute((c) => {
   return c.render(
     <div class="container mx-auto px-4 pt-4 pb-8 max-w-4xl">
       <div class="flex items-start justify-between pt-8 gap-20">
-        <PostList
-          modules={paginatedModules}
-          showTags={true}
-          selectedTags={selectedTags}
-          emptyMessage={
-            selectedTags.length > 0
-              ? "フィルタ条件に一致する記事が見つかりませんでした。"
-              : "表示できる記事がありません。"
-          }
-          listClassName="space-y-8 min-h-[750px]"
-          itemClassName="min-h-[100px]"
-          contentClassName="flex flex-col"
-          dateClassName="text-xs text-gray-400 mb-2"
-        />
+        <div id="post-list-container">
+          <PostList
+            modules={paginatedModules}
+            showTags={true}
+            selectedTags={selectedTags}
+            emptyMessage={
+              selectedTags.length > 0
+                ? "フィルタ条件に一致する記事が見つかりませんでした。"
+                : "表示できる記事がありません。"
+            }
+            listClassName="space-y-8 min-h-[750px]"
+            itemClassName="min-h-[100px]"
+            contentClassName="flex flex-col"
+            dateClassName="text-xs text-gray-400 mb-2 dark:text-gray-500"
+          />
+        </div>
 
         <TagFilterList
           tags={sortedTags}
           selectedTags={selectedTags}
+          containerId="desktop-tag-filter"
           containerClassName="hidden md:block w-56 shrink-0"
           contentClassName="sticky top-20"
         />
       </div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        prevHref={prevHref}
-        nextHref={nextHref}
-        className="flex items-center md:mt-48 justify-center"
-      />
+      <div id="pagination-container">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          prevHref={prevHref}
+          nextHref={nextHref}
+          className="flex items-center md:mt-48 justify-center"
+        />
+      </div>
     </div>,
   );
 });
