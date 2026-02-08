@@ -1,5 +1,5 @@
 import { createRoute } from "honox/factory";
-import { loadBlogModules, formatDate, findModuleBySlug } from "../../lib/blog-loader";
+import { findModuleBySlug, formatDate, loadBlogModules } from "../../lib/blog-loader";
 
 export default createRoute(async (c) => {
   const slug = c.req.param("slug");
@@ -17,7 +17,7 @@ export default createRoute(async (c) => {
   const Content = module.default;
 
   return c.render(
-    <article class="container mx-auto px-4 py-8 max-w-3xl">
+    <article class="container mx-auto px-4 py-8 max-w-4xl">
       <a
         href="/"
         class="inline-block mb-6 text-gray-500 hover:text-gray-900 transition-colors text-sm"

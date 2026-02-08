@@ -1,39 +1,71 @@
-import { loadBlogModules, formatDate, extractSlug } from "../lib/blog-loader";
+import { createRoute } from "honox/factory";
+import { Pagination } from "../components/Pagination";
+import { PostList } from "../components/PostList";
+import { TagFilterList } from "../components/TagFilter";
+import { loadBlogModules, paginate, sortByDate } from "../lib/blog-loader";
 
-export default function BlogIndex() {
+export default createRoute((c) => {
   const modules = loadBlogModules();
+  const { page = "1" } = c.req.query();
+  const selectedTags = [...new Set(new URL(c.req.url).searchParams.getAll("tag").filter(Boolean))];
+  const currentPage = parseInt(page, 10) || 1;
 
-  return (
-    <div class="container mx-auto px-4 py-8 max-w-3xl">
-      <div class="space-y-12">
-        {Object.entries(modules).map(([id, module]) => {
-          if (!module.frontmatter) {
-            return null;
-          }
+  let sortedModules = sortByDate(modules, true);
+  if (selectedTags.length > 0) {
+    sortedModules = sortedModules.filter(({ module }) =>
+      selectedTags.every((tag) => module.frontmatter?.tags?.includes(tag)),
+    );
+  }
 
-          const slug = extractSlug(id);
-          if (!slug) {
-            return null;
-          }
+  const allTags = Object.values(modules)
+    .flatMap((module) => module.frontmatter?.tags || [])
+    .reduce(
+      (acc, tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
 
-          const pubDate = formatDate(module.frontmatter.pubDate);
+  const sortedTags = Object.entries(allTags)
+    .sort(([, a], [, b]) => b - a)
+    .map(([tag]) => tag);
 
-          return (
-            <article class="pb-8">
-              <a
-                href={`/blog/${slug}`}
-                class="block hover:text-gray-900 transition-colors text-gray-700"
-              >
-                <h2 class="text-xl font-semibold mb-2">{module.frontmatter.title}</h2>
-                <p class="text-gray-500 mb-3">{module.frontmatter.description}</p>
-                <div class="text-xs text-gray-400">
-                  <time>{pubDate}</time>
-                </div>
-              </a>
-            </article>
-          );
-        })}
+  const {
+    start: _start,
+    end: _end,
+    totalPages,
+    paginatedModules,
+  } = paginate(sortedModules, currentPage, 5);
+  const querySuffix =
+    selectedTags.length > 0
+      ? `&${selectedTags.map((tag) => `tag=${encodeURIComponent(tag)}`).join("&")}`
+      : "";
+  const prevHref = currentPage > 1 ? `/?page=${currentPage - 1}${querySuffix}` : undefined;
+  const nextHref = currentPage < totalPages ? `/?page=${currentPage + 1}${querySuffix}` : undefined;
+
+  return c.render(
+    <div class="container mx-auto px-4 pt-4 pb-8 max-w-4xl">
+      <div class="flex items-start justify-between pt-8 gap-20">
+        <PostList
+          modules={paginatedModules}
+          showTags={true}
+          selectedTags={selectedTags}
+          listClassName="space-y-8 min-h-[750px]"
+          itemClassName="min-h-[100px]"
+          contentClassName="flex flex-col"
+          dateClassName="text-xs text-gray-400 mb-2"
+        />
+
+        <TagFilterList tags={sortedTags} selectedTags={selectedTags} />
       </div>
-    </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        prevHref={prevHref}
+        nextHref={nextHref}
+        className="flex items-center mt-48 justify-center"
+      />
+    </div>,
   );
-}
+});
