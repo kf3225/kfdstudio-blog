@@ -3,33 +3,21 @@ import { Pagination } from "../components/Pagination";
 import { PostList } from "../components/PostList";
 import { TagFilterList } from "../components/TagFilter";
 import { loadBlogModules, paginate, sortByDate } from "../lib/blog-loader";
+import {
+  buildTagQuerySuffix,
+  filterModulesBySelectedTags,
+  getSelectedTagsFromUrl,
+  getSortedTagsFromModules,
+} from "../lib/tag-filter";
 
 export default createRoute((c) => {
   const modules = loadBlogModules();
   const { page = "1" } = c.req.query();
-  const selectedTags = [...new Set(new URL(c.req.url).searchParams.getAll("tag").filter(Boolean))];
+  const selectedTags = getSelectedTagsFromUrl(c.req.url);
   const currentPage = parseInt(page, 10) || 1;
 
-  let sortedModules = sortByDate(modules, true);
-  if (selectedTags.length > 0) {
-    sortedModules = sortedModules.filter(({ module }) =>
-      selectedTags.every((tag) => module.frontmatter?.tags?.includes(tag)),
-    );
-  }
-
-  const allTags = Object.values(modules)
-    .flatMap((module) => module.frontmatter?.tags || [])
-    .reduce(
-      (acc, tag) => {
-        acc[tag] = (acc[tag] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>,
-    );
-
-  const sortedTags = Object.entries(allTags)
-    .sort(([, a], [, b]) => b - a)
-    .map(([tag]) => tag);
+  const sortedModules = filterModulesBySelectedTags(sortByDate(modules, true), selectedTags);
+  const sortedTags = getSortedTagsFromModules(modules);
 
   const {
     start: _start,
@@ -37,10 +25,7 @@ export default createRoute((c) => {
     totalPages,
     paginatedModules,
   } = paginate(sortedModules, currentPage, 5);
-  const querySuffix =
-    selectedTags.length > 0
-      ? `&${selectedTags.map((tag) => `tag=${encodeURIComponent(tag)}`).join("&")}`
-      : "";
+  const querySuffix = buildTagQuerySuffix(selectedTags);
   const prevHref = currentPage > 1 ? `/?page=${currentPage - 1}${querySuffix}` : undefined;
   const nextHref = currentPage < totalPages ? `/?page=${currentPage + 1}${querySuffix}` : undefined;
 

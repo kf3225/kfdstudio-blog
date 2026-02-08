@@ -3,6 +3,7 @@ import {
   buildTagFilterHref,
   TAG_FILTER_ACTIVE_CLASS,
   TAG_FILTER_INACTIVE_CLASS,
+  toggleTagSelection,
 } from "../lib/tag-filter";
 
 interface TagFilterListProps {
@@ -27,11 +28,7 @@ export const TagFilterList: FC<TagFilterListProps> = ({
           {tags.map((tag) => (
             <a
               key={tag}
-              href={buildTagFilterHref(
-                selectedTags.includes(tag)
-                  ? selectedTags.filter((selectedTag) => selectedTag !== tag)
-                  : [...selectedTags, tag],
-              )}
+              href={buildTagFilterHref(toggleTagSelection(selectedTags, tag))}
               data-tag-filter-link="true"
               class={`px-2.5 py-1 rounded text-xs transition-colors ${selectedTags.includes(tag) ? TAG_FILTER_ACTIVE_CLASS : TAG_FILTER_INACTIVE_CLASS}`}
             >

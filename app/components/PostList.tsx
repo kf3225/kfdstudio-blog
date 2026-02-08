@@ -1,6 +1,6 @@
 import { FC } from "hono/jsx";
 import { extractSlug, formatDate, MDXModule } from "../lib/blog-loader";
-import { buildTagFilterHref } from "../lib/tag-filter";
+import { buildTagFilterHref, toggleTagSelection } from "../lib/tag-filter";
 
 interface PostListProps {
   modules: Array<{ id: string; module: MDXModule }>;
@@ -63,9 +63,7 @@ export const PostList: FC<PostListProps> = ({
                     {module.frontmatter.tags.map((tag) => (
                       <a
                         key={tag}
-                        href={buildTagFilterHref(
-                          selectedTags.includes(tag) ? selectedTags : [...selectedTags, tag],
-                        )}
+                        href={buildTagFilterHref(toggleTagSelection(selectedTags, tag))}
                         data-tag-filter-link="true"
                         class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded text-xs hover:bg-gray-200 transition-colors dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                       >

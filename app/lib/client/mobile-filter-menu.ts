@@ -1,7 +1,9 @@
 import {
   buildTagFilterHref,
+  getSelectedTagsFromSearchParams,
   TAG_FILTER_ACTIVE_CLASS,
   TAG_FILTER_INACTIVE_CLASS,
+  toggleTagSelection,
 } from "../tag-filter";
 
 let cachedTags: string[] | null = null;
@@ -9,9 +11,7 @@ let isOutsideClickBound = false;
 
 const createTagFilterLink = (tag: string, selectedTags: string[]): HTMLAnchorElement => {
   const isSelected = selectedTags.includes(tag);
-  const nextTags = isSelected
-    ? selectedTags.filter((selectedTag) => selectedTag !== tag)
-    : [...selectedTags, tag];
+  const nextTags = toggleTagSelection(selectedTags, tag);
 
   const link = document.createElement("a");
   link.href = buildTagFilterHref(nextTags);
@@ -60,7 +60,7 @@ export const renderMobileFilterMenu = async (): Promise<void> => {
     return;
   }
 
-  const selectedTags = [...new Set(new URLSearchParams(window.location.search).getAll("tag"))];
+  const selectedTags = getSelectedTagsFromSearchParams(new URLSearchParams(window.location.search));
   if (selectedTags.length > 0) {
     menu.open = true;
     clearLink.classList.remove("hidden");
