@@ -1,34 +1,38 @@
 import { FC } from "hono/jsx";
 import { extractSlug, formatDate, MDXModule } from "../lib/blog-loader";
+import { buildTagFilterHref } from "../lib/tag-filter";
 
 interface PostListProps {
   modules: Array<{ id: string; module: MDXModule }>;
   showTags?: boolean;
   selectedTags?: string[];
+  emptyMessage?: string;
+  emptyStateClassName?: string;
   listClassName?: string;
   itemClassName?: string;
   contentClassName?: string;
   dateClassName?: string;
 }
 
-const buildTagFilterHref = (tags: string[]): string => {
-  if (tags.length === 0) {
-    return "/";
-  }
-
-  const params = tags.map((tag) => `tag=${encodeURIComponent(tag)}`).join("&");
-  return `/?${params}`;
-};
-
 export const PostList: FC<PostListProps> = ({
   modules,
   showTags = false,
   selectedTags = [],
+  emptyMessage = "記事が見つかりませんでした。",
+  emptyStateClassName = "rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-500",
   listClassName = "space-y-16",
   itemClassName = "pb-8 h-[100px]",
   contentClassName = "flex flex-col",
   dateClassName = "text-xs text-gray-400 mb-2",
 }) => {
+  if (modules.length === 0) {
+    return (
+      <div class={listClassName}>
+        <div class={emptyStateClassName}>{emptyMessage}</div>
+      </div>
+    );
+  }
+
   return (
     <div class={listClassName}>
       {modules.map(({ id, module }) => {

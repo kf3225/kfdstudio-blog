@@ -1,12 +1,16 @@
 import { FC } from "hono/jsx";
 
-export const SearchBox: FC = () => {
+interface SearchBoxProps {
+  className?: string;
+}
+
+export const SearchBox: FC<SearchBoxProps> = ({ className = "ml-auto flex items-center w-60" }) => {
   return (
-    <div class="ml-auto flex items-center w-60">
-      <div id="search-container" class="relative w-full">
+    <div class={className}>
+      <div data-search-root class="relative w-full">
         <input
           type="text"
-          id="search-input"
+          data-search-input
           placeholder=""
           class="w-full px-3 py-2 pl-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
           autocomplete="off"
@@ -25,7 +29,7 @@ export const SearchBox: FC = () => {
           ></path>
         </svg>
         <div
-          id="search-results"
+          data-search-results
           class="hidden absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"
         ></div>
       </div>

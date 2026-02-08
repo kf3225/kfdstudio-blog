@@ -1,23 +1,22 @@
 import { FC } from "hono/jsx";
-
-const buildTagFilterHref = (tags: string[]): string => {
-  if (tags.length === 0) {
-    return "/";
-  }
-
-  const params = tags.map((tag) => `tag=${encodeURIComponent(tag)}`).join("&");
-  return `/?${params}`;
-};
+import { buildTagFilterHref } from "../lib/tag-filter";
 
 interface TagFilterListProps {
   tags: string[];
   selectedTags?: string[];
+  containerClassName?: string;
+  contentClassName?: string;
 }
 
-export const TagFilterList: FC<TagFilterListProps> = ({ tags, selectedTags = [] }) => {
+export const TagFilterList: FC<TagFilterListProps> = ({
+  tags,
+  selectedTags = [],
+  containerClassName = "w-56 shrink-0",
+  contentClassName = "sticky top-20",
+}) => {
   return (
-    <div class="w-56 shrink-0">
-      <div class="sticky top-20">
+    <div class={containerClassName}>
+      <div class={contentClassName}>
         <div class="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <a

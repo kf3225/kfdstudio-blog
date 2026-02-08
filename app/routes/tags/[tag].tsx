@@ -59,7 +59,7 @@ export default createRoute((c) => {
           totalPages={totalPages}
           prevHref={prevHref}
           nextHref={nextHref}
-          className="flex items-center gap-8 mt-48 justify-center"
+          className="flex items-center gap-8 md:mt-48 justify-center"
         />
       </div>
     </div>,

@@ -51,20 +51,30 @@ export default createRoute((c) => {
           modules={paginatedModules}
           showTags={true}
           selectedTags={selectedTags}
+          emptyMessage={
+            selectedTags.length > 0
+              ? "フィルタ条件に一致する記事が見つかりませんでした。"
+              : "表示できる記事がありません。"
+          }
           listClassName="space-y-8 min-h-[750px]"
           itemClassName="min-h-[100px]"
           contentClassName="flex flex-col"
           dateClassName="text-xs text-gray-400 mb-2"
         />
 
-        <TagFilterList tags={sortedTags} selectedTags={selectedTags} />
+        <TagFilterList
+          tags={sortedTags}
+          selectedTags={selectedTags}
+          containerClassName="hidden md:block w-56 shrink-0"
+          contentClassName="sticky top-20"
+        />
       </div>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         prevHref={prevHref}
         nextHref={nextHref}
-        className="flex items-center mt-48 justify-center"
+        className="flex items-center md:mt-48 justify-center"
       />
     </div>,
   );
